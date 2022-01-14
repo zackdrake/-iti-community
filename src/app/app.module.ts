@@ -1,84 +1,64 @@
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { rootRouterConfig } from './app.routes';
-import * as components from './components';
-import * as services from 'services';
-import { JwtModule } from '@auth0/angular-jwt';
-import { host, port } from './services/ServerConfiguration';
-import { readAccessToken } from './services/UserStorageService';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { far } from '@fortawesome/free-regular-svg-icons';
+import { NgModule } from '@angular/core';
 
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { SplashScreenLayoutComponent } from './layouts/splash-screen-layout/splash-screen-layout.component';
+import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
+import { AuthenticationModule } from 'src/modules/authentication/authentication.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgZorroAntdModule, NZ_I18N, fr_FR } from 'ng-zorro-antd';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { fr_FR } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import fr from '@angular/common/locales/fr';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
+import { UserModule } from 'src/modules/user/user.module';
+import { FeedModule } from 'src/modules/feed/feed.module';
+import { RoomModule } from 'src/modules/room/room.module';
+import { InputModule } from 'src/modules/input/input.module';
+import { RoomPageComponent } from './pages/room-page/room-page.component';
+import { NotificationModule } from 'src/modules/notification/notification.module';
+import { WebsocketConnection } from 'src/modules/common/WebsocketConnection';
+import { SocketIoWebsocketConnection } from 'src/modules/common/SocketIoWebsocketConnection';
+import { WebSocketTopic } from 'src/modules/common/WebSocketTopic';
+const ws = new SocketIoWebsocketConnection();
 
 registerLocaleData(fr);
-library.add(fas, far);
 
 @NgModule({
-    declarations: [
-        components.AddChannelComponent,
-        components.AppComponent,
-        components.LoginComponent,
-        components.MenuComponent,
-        components.NotificationBarComponent,
-        components.PostCommentComponent,
-        components.PostComponent,
-        components.PictureFeedContentComponent,
-        components.RegisterComponent,
-        components.SocialAppComponent,
-        components.SocialFeedComponent,
-        components.UserInputsComponent,
-        components.VideoFeedContentComponent,
-        components.YoutubeFeedContentComponent,
-        components.UserProfilePictureComponent,
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        JwtModule.forRoot({
-            config: {
-                tokenGetter: readAccessToken,
-                whitelistedDomains: [`${host}:${port}`],
-                blacklistedRoutes: [`${host}:${port}/api/authentication/login/`]
-            }
-        }),
-        RouterModule.forRoot(rootRouterConfig),
-        FontAwesomeModule,
-        BrowserAnimationsModule,
-        NgZorroAntdModule
-    ],
-    providers: [
-        services.AuthGuard,
-        services.UserStorageService,
-        services.SocketService, {
-            provide: services.ServerConfiguration,
-            useValue: new services.ServerConfiguration()
-        },
-        services.ChannelService,
-        services.PostService,
-        services.PostSocketService,
-        services.MessageParser,
-        services.AuthenticationService,
-        {
-            provide: services.LoggedUser,
-            useFactory: (auth: services.AuthenticationService) => auth.user,
-            deps: [services.AuthenticationService]
-        },
-        services.RegistrationService,
-        { provide: NZ_I18N, useValue: fr_FR },
-    ],
-    bootstrap: [components.AppComponent]
+  declarations: [
+    AppComponent,
+    LoginPageComponent,
+    SplashScreenLayoutComponent,
+    AppLayoutComponent,
+    RegistrationPageComponent,
+    RoomPageComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AuthenticationModule,
+    UserModule,
+    FeedModule,
+    RoomModule,
+    InputModule,
+    FormsModule,
+    NotificationModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    NzFormModule,
+    NzButtonModule
+  ],
+  providers: [{ provide: NZ_I18N, useValue: fr_FR }, {
+    provide: WebsocketConnection,
+    useValue: ws
+  }, WebSocketTopic],
+  bootstrap: [AppComponent]
 })
-export class AppModule {
-
-}
+export class AppModule { }
