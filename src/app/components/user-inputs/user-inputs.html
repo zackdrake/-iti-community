@@ -1,0 +1,26 @@
+<form (ngSubmit)="send()">
+    <textarea name="message" nz-input [nzAutosize]="{ minRows: 2, maxRows: 6 }" rows="3" [(ngModel)]="message"></textarea>
+    <div class="user-inputs-action">
+        <button  nz-button nzType="primary" [disabled]="!message" type="submit" >Poster</button>
+    </div>
+</form>
+<style>
+    :host {
+        display: block;
+        padding: 10px;
+        background: white;
+    }
+    textarea {
+        resize: none;
+    }
+    .user-inputs-action {
+        margin-top: 20px;
+    }
+
+    .user-inputs-action > button {
+        margin-right: 10px;
+    }
+    .user-inputs-action > button:last-child{
+        margin: 0;
+    }
+</style>
