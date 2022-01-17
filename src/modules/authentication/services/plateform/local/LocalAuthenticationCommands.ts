@@ -8,6 +8,7 @@ export class LocalAuthenticationCommands extends AuthenticationCommands {
   private userStorage: UserLocalStorage = new UserLocalStorage();
 
   async login(username: string, password: string): Promise<LoginCommandResult> {
+    console.log('Local login...');
     const users = this.userStorage.getValue();
     const userId = Object.keys(users).find(id => users[id].username === username);
     if (!userId) {

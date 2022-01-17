@@ -5,6 +5,13 @@ export class UserLocalStorage extends TypedLocalStorage<{ [id: string]: UserRegi
   private static StorageKey = "ity.user";
 
   constructor() {
-    super(UserLocalStorage.StorageKey, {});
+    super(UserLocalStorage.StorageKey, {
+      "1": {
+        id: "1",
+        username: "user",
+        photoUrl: "photoUrl",
+        password: "pass"
+      }
+    });
   }
 }

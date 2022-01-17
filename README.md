@@ -82,14 +82,14 @@ Le clic sur le bouton "Connexion" permet de soumettre le formulaire en appelant 
 
 #### Level I
 
-1. Faire le formulaire de sign in
-2. Rendre le username et le mot de passe obligatoires
-3. Rediriger l'utilisateur sur "/" en cas de succès
+1. Faire le formulaire de sign in (DONE)
+2. Rendre le username et le mot de passe obligatoires (DONE)
+3. Rediriger l'utilisateur sur "/" en cas de succès (DONE)
 
 #### Level II
 
-4. Afficher les messages d'erreurs de validation pour chaque champs
-5. Afficher un message si le login a échoué
+4. Afficher les messages d'erreurs de validation pour chaque champs (DONE)
+5. Afficher un message si le login a échoué (DONE)
     > Vous pouvez utiliser le `NzMessageService` pour afficher des messages
 
 ### Room

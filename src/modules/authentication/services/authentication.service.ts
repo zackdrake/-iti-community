@@ -17,6 +17,7 @@ export class AuthenticationService {
             return Bad(loginResult.reason);
         }
 
+        // Store userId and bearer token in local storage
         this.store.mutate(s => {
             return {
                 ...s,
