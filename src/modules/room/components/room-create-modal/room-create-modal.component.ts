@@ -40,7 +40,6 @@ export class RoomCreateModalComponent implements OnInit {
   }
 
   open() {
-    console.log('OPEN');
     this.form.resetForm(new CreateRoomFormModel());
     this.isVisible = true;
   }

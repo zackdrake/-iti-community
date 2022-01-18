@@ -105,7 +105,7 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 
     > Utiliser la directive ngFor pour itérer sur les rooms et afficher leurs noms
 
-2. Pouvoir naviguer vers room au clic dans le menu (DONE (reste a patch feed))
+2. Pouvoir naviguer vers room au clic dans le menu (DONE)
 
 #### Level II
 
@@ -126,14 +126,14 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
     ```
     > Lors de la validation du formulaire, la méthode ```onOk``` sera invoquée (tel que configuré sur le composant `nz-modal`)
 
-4. Sélectionner par défaut la première room de la liste (TODO)
+4. Sélectionner par défaut la première room de la liste (DONE)
     > Rediriger vers la première room si il n'y a pas de roomId dans le store. 
     > Tester `this.feedStore.value.roomId`
   
-5. Ajouter ajouter les nouvelles rooms créées dynamiquement (TODO)
+5. Ajouter ajouter les nouvelles rooms créées dynamiquement (TODO: Faire quand connexion au backend server faites (car utilisation des sockets pour savoir))
 
 #### Level III
-6. Sélectionner par défaut la dernière room visité par l'utilisateur en stockant l'information dans le [localStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage) (TODO)
+6. Sélectionner par défaut la dernière room visité par l'utilisateur en stockant l'information dans le [localStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage) (DONE)
 
 ### Post
 
