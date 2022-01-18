@@ -11,6 +11,7 @@ export class HttpAuthenticationCommands extends AuthenticationCommands {
   }
 
   login(username: string, password: string): Promise<LoginCommandResult> {
+    console.log("Http login...");
     return this.http.post<LoginCommandResult>(`${environment.serverBaseUrl}/auth/login`, { username, password }).toPromise();
   }
 

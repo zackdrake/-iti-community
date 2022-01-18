@@ -31,9 +31,12 @@ export class LoginComponent implements OnInit {
 
   goToRegistration() {
     // TODO naviguer vers "/splash/register"
+    this.router.navigate(["/splash/register"]);
   }
 
   submit() {
+    this.model.username = this.ngForm.form.value.username;
+    this.model.password = this.ngForm.form.value.password;
     this.login();
   }
 
@@ -44,8 +47,12 @@ export class LoginComponent implements OnInit {
 
     try {
       // TODO vérifier le résultat de l'authentification. Rediriger sur "/" en cas de succès ou afficher une erreur en cas d'échec
-      await this.authService.authenticate(this.model.username, this.model.password);
-
+      const result = await this.authService.authenticate(this.model.username, this.model.password);
+      if (result.success) {
+        this.router.navigate(["/"]);
+      } else {
+        this.nzMessageService.error(result.reason);
+      }
     } catch (e) {
       this.nzMessageService.error("Une erreur est survenue. Veuillez réessayer plus tard");
     }
