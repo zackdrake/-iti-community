@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FeedStore } from 'src/modules/feed/feed.store';
@@ -7,6 +7,7 @@ import { RoomStore } from '../../room.store';
 import { RoomQueries } from '../../services/room.queries';
 import { RoomService } from '../../services/room.service';
 import { RoomSocketService } from '../../services/room.socket.service';
+import { RoomCreateModalComponent } from '../room-create-modal/room-create-modal.component';
 @Component({
   selector: 'app-room-menu',
   templateUrl: './room-menu.component.html',
@@ -17,16 +18,20 @@ export class RoomMenuComponent implements OnInit {
 
   rooms: Room[];
 
-  constructor(private feedStore: FeedStore, private queries: RoomQueries, private roomSocketService: RoomSocketService) {
+  @ViewChild("modal") child: RoomCreateModalComponent;
+
+  constructor(private feedStore: FeedStore, private router: Router, private queries: RoomQueries, private roomSocketService: RoomSocketService) {
     this.roomId$ = feedStore.roomId$;
     this.rooms = [];
   }
 
   async ngOnInit() {
     this.rooms = await this.queries.getAll();
+    console.log(this.rooms);
   }
 
   goToRoom(room: Room) {
     // TODO naviguer vers app/[id de la room]
+    this.router.navigate(['/app', room.id]);
   }
 }

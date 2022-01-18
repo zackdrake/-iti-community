@@ -9,7 +9,7 @@ export class LocalRoomCommands extends RoomCommands {
 
     async create(name: string, type: RoomType): Promise<Room> {
         const room = {
-            id: (Math.random() * 1000).toString(),
+            id: (Math.round(Math.random() * 1000)).toString(),
             name,
             type
         };

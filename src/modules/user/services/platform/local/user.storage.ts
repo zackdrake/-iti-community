@@ -9,7 +9,7 @@ export class UserLocalStorage extends TypedLocalStorage<{ [id: string]: UserRegi
       "1": {
         id: "1",
         username: "user",
-        photoUrl: "photoUrl",
+        photoUrl: "/assets/images/default-avatar.png",
         password: "pass"
       }
     });
