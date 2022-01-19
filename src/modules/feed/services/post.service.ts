@@ -31,6 +31,7 @@ export class PostService {
     }
 
     like(post: Post) {
-      // TODO appeler la méthode like sur PostCommands
+        // TODO appeler la méthode like sur PostCommands
+        this.commands.like(post.roomId, post.id);
     }
 }
