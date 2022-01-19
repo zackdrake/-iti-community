@@ -42,7 +42,7 @@ export class UserRegistrationComponent implements OnInit {
       this.nzMessageService.error("Mot de passe requis");
       return;
     }
-    if (this.userQueries.exists(this.model.username)) {
+    if (await this.userQueries.exists(this.model.username)) {
       this.nzMessageService.error("Identifiant déjà utilisé");
 
       return;

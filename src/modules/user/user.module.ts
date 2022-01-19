@@ -28,11 +28,11 @@ import { NotificationModule } from '../notification/notification.module';
     UserStore,
     {
       provide: UserQueries,
-      useClass: LocalUserQueries
+      useClass: HttpUserQueries // LocalUserQueries
     },
     {
       provide: UserCommands,
-      useClass: LocalUserCommands
+      useClass: HttpUserCommands // LocalUserCommands
     }
   ],
   imports: [
