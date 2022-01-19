@@ -27,11 +27,11 @@ import { FeedSocketService } from '../feed/services/feed.socket.service';
   exports: [RoomMenuComponent, RoomComponent],
   providers: [{
     provide: RoomCommands,
-    useClass: LocalRoomCommands
+    useClass: HttpRoomCommands // LocalRoomCommands
   },
   {
     provide: RoomQueries,
-    useClass: LocalRoomQueries
+    useClass: HttpRoomQueries // LocalRoomQueries
   },
     RoomStore,
     RoomService,

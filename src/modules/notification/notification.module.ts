@@ -14,7 +14,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
   providers: [NotificationStore, NotificationService,
     {
       provide: NotificationQueries,
-      useClass: LocalNotificationQueries
+      useClass: HttpNotificationQueries // LocalNotificationQueries
     }, {
       provide: NotificationCommands,
       useClass: HttpNotificationCommands
