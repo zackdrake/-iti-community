@@ -82,14 +82,14 @@ Le clic sur le bouton "Connexion" permet de soumettre le formulaire en appelant 
 
 #### Level I
 
-1. Faire le formulaire de sign in
-2. Rendre le username et le mot de passe obligatoires
-3. Rediriger l'utilisateur sur "/" en cas de succès
+1. Faire le formulaire de sign in (DONE)
+2. Rendre le username et le mot de passe obligatoires (DONE)
+3. Rediriger l'utilisateur sur "/" en cas de succès (DONE)
 
 #### Level II
 
-4. Afficher les messages d'erreurs de validation pour chaque champs
-5. Afficher un message si le login a échoué
+4. Afficher les messages d'erreurs de validation pour chaque champs (DONE)
+5. Afficher un message si le login a échoué (DONE)
     > Vous pouvez utiliser le `NzMessageService` pour afficher des messages
 
 ### Room
@@ -100,16 +100,16 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 
 #### Level I
 
-1. Afficher la liste des rooms dans le menu
+1. Afficher la liste des rooms dans le menu (DONE)
     > `src/modules/room/room-menu`
 
     > Utiliser la directive ngFor pour itérer sur les rooms et afficher leurs noms
 
-2. Pouvoir naviguer vers room au clic dans le menu
+2. Pouvoir naviguer vers room au clic dans le menu (DONE)
 
 #### Level II
 
-3. Pouvoir ajouter une nouvelle room
+3. Pouvoir ajouter une nouvelle room (DONE)
     > Dans `src/modules/room/room-menu`
 
     > Appeler la méthode open du composant `app-room-create-modal` au clic du bouton "+"
@@ -126,14 +126,14 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
     ```
     > Lors de la validation du formulaire, la méthode ```onOk``` sera invoquée (tel que configuré sur le composant `nz-modal`)
 
-4. Sélectionner par défaut la première room de la liste
+4. Sélectionner par défaut la première room de la liste (DONE)
     > Rediriger vers la première room si il n'y a pas de roomId dans le store. 
     > Tester `this.feedStore.value.roomId`
   
-5. Ajouter ajouter les nouvelles rooms créées dynamiquement
+5. Ajouter ajouter les nouvelles rooms créées dynamiquement (TODO: Faire quand connexion au backend server faites (car utilisation des sockets pour savoir))
 
 #### Level III
-6. Sélectionner par défaut la dernière room visité par l'utilisateur en stockant l'information dans le [localStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage)
+6. Sélectionner par défaut la dernière room visité par l'utilisateur en stockant l'information dans le [localStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage) (DONE)
 
 ### Post
 

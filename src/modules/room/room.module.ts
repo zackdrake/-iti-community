@@ -20,6 +20,7 @@ import { InputModule } from '../input/input.module';
 import { HttpRoomCommands } from './services/plateform/http/room.commands.http';
 import { HttpRoomQueries } from './services/plateform/http/room.queries.http';
 import { RoomSocketService } from './services/room.socket.service';
+import { FeedSocketService } from '../feed/services/feed.socket.service';
 
 @NgModule({
   declarations: [RoomMenuComponent, RoomCreateModalComponent, RoomComponent],
@@ -34,7 +35,8 @@ import { RoomSocketService } from './services/room.socket.service';
   },
     RoomStore,
     RoomService,
-    RoomSocketService
+    RoomSocketService,
+    FeedSocketService
   ],
   imports: [
     CommonModule,
