@@ -1,9 +1,9 @@
 <div class="post">
-  <div class="post-author-name"></div>
+  <div class="post-author-name">{{post.createdBy.username}}</div>
 
   <!-- TIPS: [ngStyle]="{'background-image': url(...) }" -->
   <div class="post-author-photo"></div>
-  <div class="post-date"></div>
+  <div class="post-date">{{post.createdAt | date: 'dd/MM/yyyy hh:mm:ss'}}</div>
 
   <!-- TIPS: [ngClass]="{liked: [expression booléenne]}" -->
   <div class="post-user-like">
@@ -12,6 +12,7 @@
 
   <p class="post-text">
     <!-- Afficher le texte du poste uniquement-->
+    {{post.message.text.content}}
   </p>
 
   <!-- Itérer sur les "attachements" du message -->

@@ -130,7 +130,7 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
     > Rediriger vers la première room si il n'y a pas de roomId dans le store. 
     > Tester `this.feedStore.value.roomId`
   
-5. Ajouter ajouter les nouvelles rooms créées dynamiquement (TODO: Faire quand connexion au backend server faites (car utilisation des sockets pour savoir))
+5. Ajouter ajouter les nouvelles rooms créées dynamiquement (DONE (a besoin d'etre connecté au backend))
 
 #### Level III
 6. Sélectionner par défaut la dernière room visité par l'utilisateur en stockant l'information dans le [localStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage) (DONE)
@@ -138,22 +138,22 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 ### Post
 
 ### Level I
-1. Pouvoir rédiger et envoyer un post
+1. Pouvoir rédiger et envoyer un post (DONE)
     > `src/modules/input/components/feed-input`
 
-2. Afficher les posts reçues dans la room
+2. Afficher les posts reçues dans la room (DONE, affiche en double quand envoi le msg)
     > `src/modules/feed/components/feed`
-3. Afficher le nom de l'auteur des messages
-4. Afficher la photo de l'auteur des messages
-5. Afficher la date du post
+3. Afficher le nom de l'auteur des messages (DONE)
+4. Afficher la photo de l'auteur des messages (TODO, a faire quand user sera fini)
+5. Afficher la date du post (DONE)
 6. Afficher une image si le message contient une url vers une image
 7. Afficher une video si le message contient une url vers une vidéo (https://www.html5rocks.com/en/tutorials/video/basics/devstories.mp4)
 8. Afficher le player de youtube si le message contient un lien youtube
 9. Implémenter le bouton like
 
 ### Level II
-8. Utiliser [luxon](https://moment.github.io/luxon/docs/class/src/duration.js~Duration.html) pour formatter les date à l'aide d'un [Pipe Angular](https://angular.io/guide/pipes#creating-pipes-for-custom-data-transformations)
-9. Insérer les nouveaux posts reçues via WebSocket
+8. Utiliser [luxon](https://moment.github.io/luxon/docs/class/src/duration.js~Duration.html) pour formatter les date à l'aide d'un [Pipe Angular](https://angular.io/guide/pipes#creating-pipes-for-custom-data-transformations) (DONE A MOITIER, N'UTILISE PAS LUXON)
+9. Insérer les nouveaux posts reçues via WebSocket (DONE)
 10. Pouvoir uploader des photos, vidéos et audios
 
 ### Level III
@@ -186,6 +186,10 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 6. N'afficher les notifications Web que si la page n'est pas visible grâce à l'évènement [visibilitychange](https://developer.mozilla.org/en-US/docs/Web/Events/visibilitychange)
 
 7. Rendre la notification clicable. Au clic, la notification doit rediriger soit vers un post, soit vers une room en fonction de la notification
+
+## UPGRADE A FAIRE SI ON A LE TEMPS
+
+- Suppresion d'un salon quand on en est le créateur
 
 ## Help
 
