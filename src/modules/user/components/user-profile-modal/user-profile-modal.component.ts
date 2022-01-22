@@ -3,6 +3,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../user.model';
+import { UserStore } from '../../user.store';
 
 export class UserProfileForm {
   id: string;
@@ -60,7 +61,7 @@ export class UserProfileModalComponent implements OnInit {
   isVisible: boolean = false;
   model: UserProfileForm;
 
-  constructor(private userService: UserService, private sanitizer: DomSanitizer) {
+  constructor(private userService: UserService, private sanitizer: DomSanitizer, private store: UserStore) {
 
   }
 
@@ -69,6 +70,8 @@ export class UserProfileModalComponent implements OnInit {
   }
 
   get photoUrl(): SafeResourceUrl {
+    this.store.get(s => this.model.photoUrl = s.user?.photoUrl);
+    console.log(this.model.photoUrl);
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.model.photoUrl || "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/434px-Unknown_person.jpg");
   }
 
@@ -78,10 +81,15 @@ export class UserProfileModalComponent implements OnInit {
       // TODO mettre à jour l'utilisateur via le service
       await this.model.toBase64(this.model.file!).then(res => {
 
-        this.model.user.photoUrl = res;
+        this.model.photoUrl = res;
       });
-      this.userService.update(this.model.user);
-      console.log(this.model.user)
+      var person = {
+        id: this.model.id,
+        username: this.model.username,
+        photo:this.model._file
+      };
+      this.userService.update(person);
+      console.log(this.model.photoUrl);
 
     }
 
