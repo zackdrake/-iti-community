@@ -39,6 +39,7 @@ export class UserWidgetComponent implements OnInit {
 
   fireToggleNotificaions() {
       this.toggleNotifications.emit();
+
   }
 
   logout() {
@@ -47,7 +48,9 @@ export class UserWidgetComponent implements OnInit {
       nzContent: "Êtes-vous sûr(e) de vouloir déconnecter votre session ?",
       nzOkText: "Déconnexion",
       nzOnOk: () => {
-        // TODO logout puis rediriger vers "/splash/login"
+        this.authService.logout();
+        this.router.navigate(["/splash/register"]);
+
       }
     });
   }

@@ -56,7 +56,7 @@ export class UserProfileModalComponent implements OnInit {
 
   @ViewChild("f")
   form: NgForm;
-  supportedTypes = "";
+  supportedTypes = ".jpg, .png";
   isVisible: boolean = false;
   model: UserProfileForm;
 
@@ -74,9 +74,15 @@ export class UserProfileModalComponent implements OnInit {
 
   async onOk() {
     // TODO vérifier si le formulaire est valide
-
     if (this.model.hasChanged()) {
       // TODO mettre à jour l'utilisateur via le service
+      await this.model.toBase64(this.model.file!).then(res => {
+
+        this.model.user.photoUrl = res;
+      });
+      this.userService.update(this.model.user);
+      console.log(this.model.user)
+
     }
 
     this.close();
