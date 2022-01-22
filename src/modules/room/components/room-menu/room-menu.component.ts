@@ -40,9 +40,9 @@ export class RoomMenuComponent implements OnInit {
       }
     });
 
-    // TODO WHEN CONNECTION TO BACKEND SERVER IS OK
+    // Work when connection to backend is OK
     this.roomSocketService.onNewRoom(room => {
-      console.log('new room', room);
+      // console.log('new room', room);
       this.rooms = [...this.rooms, room];
     });
   }

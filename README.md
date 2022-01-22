@@ -130,7 +130,7 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
     > Rediriger vers la première room si il n'y a pas de roomId dans le store. 
     > Tester `this.feedStore.value.roomId`
   
-5. Ajouter ajouter les nouvelles rooms créées dynamiquement (TODO: Faire quand connexion au backend server faites (car utilisation des sockets pour savoir))
+5. Ajouter ajouter les nouvelles rooms créées dynamiquement (DONE (a besoin d'etre connecté au backend))
 
 #### Level III
 6. Sélectionner par défaut la dernière room visité par l'utilisateur en stockant l'information dans le [localStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage) (DONE)
@@ -138,28 +138,28 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 ### Post
 
 ### Level I
-1. Pouvoir rédiger et envoyer un post
+1. Pouvoir rédiger et envoyer un post (DONE)
     > `src/modules/input/components/feed-input`
 
-2. Afficher les posts reçues dans la room
+2. Afficher les posts reçues dans la room (DONE)
     > `src/modules/feed/components/feed`
-3. Afficher le nom de l'auteur des messages
-4. Afficher la photo de l'auteur des messages
-5. Afficher la date du post
-6. Afficher une image si le message contient une url vers une image
-7. Afficher une video si le message contient une url vers une vidéo (https://www.html5rocks.com/en/tutorials/video/basics/devstories.mp4)
-8. Afficher le player de youtube si le message contient un lien youtube
-9. Implémenter le bouton like
+3. Afficher le nom de l'auteur des messages (DONE)
+4. Afficher la photo de l'auteur des messages (DONE)
+5. Afficher la date du post (DONE)
+6. Afficher une image si le message contient une url vers une image (DONE)
+7. Afficher une video si le message contient une url vers une vidéo (https://www.html5rocks.com/en/tutorials/video/basics/devstories.mp4) (DONE)
+8. Afficher le player de youtube si le message contient un lien youtube (DONE, bug, video se relance, obligé de désactiver le bloqueur de pub, pleins de requetes network)
+9. Implémenter le bouton like (DONE)
 
 ### Level II
-8. Utiliser [luxon](https://moment.github.io/luxon/docs/class/src/duration.js~Duration.html) pour formatter les date à l'aide d'un [Pipe Angular](https://angular.io/guide/pipes#creating-pipes-for-custom-data-transformations)
-9. Insérer les nouveaux posts reçues via WebSocket
-10. Pouvoir uploader des photos, vidéos et audios
+8. Utiliser [luxon](https://moment.github.io/luxon/docs/class/src/duration.js~Duration.html) pour formatter les date à l'aide d'un [Pipe Angular](https://angular.io/guide/pipes#creating-pipes-for-custom-data-transformations) (DONE A MOITIER, N'UTILISE PAS LUXON)
+9. Insérer les nouveaux posts reçues via WebSocket (DONE)
+10. Pouvoir uploader des photos, vidéos et audios (TODO)
 
 ### Level III
-10. Pouvoir parser plusieurs type de contenus dans un seul post
-11. Remplacer les liens http par des balises <a>...</a>.
-12. Dans les messages, afficher les mentions `@username` en vert
+10. Pouvoir parser plusieurs type de contenus dans un seul post (DONE)
+11. Remplacer les liens http par des balises <a>...</a>. (DONE)
+12. Dans les messages, afficher les mentions `@username` en vert (DONE)
 
 ### User Widget 
 
