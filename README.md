@@ -144,7 +144,7 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 2. Afficher les posts reçues dans la room (DONE)
     > `src/modules/feed/components/feed`
 3. Afficher le nom de l'auteur des messages (DONE)
-4. Afficher la photo de l'auteur des messages (TODO, a faire quand user sera fini)
+4. Afficher la photo de l'auteur des messages (DONE)
 5. Afficher la date du post (DONE)
 6. Afficher une image si le message contient une url vers une image (DONE)
 7. Afficher une video si le message contient une url vers une vidéo (https://www.html5rocks.com/en/tutorials/video/basics/devstories.mp4) (DONE)
@@ -157,9 +157,9 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 10. Pouvoir uploader des photos, vidéos et audios (TODO)
 
 ### Level III
-10. Pouvoir parser plusieurs type de contenus dans un seul post (TODO)
+10. Pouvoir parser plusieurs type de contenus dans un seul post (DONE)
 11. Remplacer les liens http par des balises <a>...</a>. (DONE)
-12. Dans les messages, afficher les mentions `@username` en vert (TODO)
+12. Dans les messages, afficher les mentions `@username` en vert (DONE)
 
 ### User Widget 
 
@@ -186,11 +186,6 @@ Un utilisateur doit en amont avoir sélectionné une room pour pouvoir y poster 
 6. N'afficher les notifications Web que si la page n'est pas visible grâce à l'évènement [visibilitychange](https://developer.mozilla.org/en-US/docs/Web/Events/visibilitychange)
 
 7. Rendre la notification clicable. Au clic, la notification doit rediriger soit vers un post, soit vers une room en fonction de la notification
-
-## UPGRADE A FAIRE SI ON A LE TEMPS
-
-- Suppresion d'un salon quand on en est le créateur
-- Meilleur like (les comptés et afficher le nombre de likes, pas sur de pouvoir faire sans toucher au backend)
 
 ## Help
 
