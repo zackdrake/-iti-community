@@ -4,6 +4,9 @@ import { NgForm } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../user.model';
 import { UserStore } from '../../user.store';
+import { UserQueries } from '../../services/user.queries';
+import {NzMessageService} from "ng-zorro-antd/message";
+let oldusername = '';
 
 export class UserProfileForm {
   id: string;
@@ -61,7 +64,7 @@ export class UserProfileModalComponent implements OnInit {
   isVisible: boolean = false;
   model: UserProfileForm;
 
-  constructor(private userService: UserService, private sanitizer: DomSanitizer, private store: UserStore) {
+  constructor(private userService: UserService, private userQueries: UserQueries, private nzMessageService: NzMessageService, private sanitizer: DomSanitizer, private store: UserStore) {
 
   }
 
@@ -71,25 +74,26 @@ export class UserProfileModalComponent implements OnInit {
 
   get photoUrl(): SafeResourceUrl {
     this.store.get(s => this.model.photoUrl = s.user?.photoUrl);
-    console.log(this.model.photoUrl);
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.model.photoUrl || "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/434px-Unknown_person.jpg");
   }
 
   async onOk() {
     // TODO vérifier si le formulaire est valide
+    if (await this.userQueries.exists(this.model.username) && this.model.username != oldusername ) {
+      this.nzMessageService.error("Identifiant déjà utilisé");
+
+      return;
+    }
+
     if (this.model.hasChanged()) {
       // TODO mettre à jour l'utilisateur via le service
-      await this.model.toBase64(this.model.file!).then(res => {
 
-        this.model.photoUrl = res;
-      });
       var person = {
         id: this.model.id,
         username: this.model.username,
         photo:this.model._file
       };
       this.userService.update(person);
-      console.log(this.model.photoUrl);
 
     }
 
@@ -106,6 +110,7 @@ export class UserProfileModalComponent implements OnInit {
   }
 
   open() {
+    oldusername = this.model.username;
     this.model = new UserProfileForm(this.user);
     this.form.resetForm(this.model);
     this.isVisible = true;
