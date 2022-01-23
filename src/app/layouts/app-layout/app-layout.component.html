@@ -8,7 +8,13 @@
       <app-user-widget (toggleNotifications)="onToggleNotifications()">
 
 
-          
+          <div class="post-author-photo" [ngStyle]="{ 'background-image': 'url(' + notification.image + ')'}"></div>
+          <div class="post-date">{{notification.timestamp | date: 'dd/MM/yyyy hh:mm:ss'}}</div>
+          <p class="post-text">
+            {{notification.body}}
+          </p>
+
+          <div #anchor></div>
 
 
 

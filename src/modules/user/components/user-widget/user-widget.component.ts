@@ -56,6 +56,7 @@ export class UserWidgetComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.notifications$)
   }
 
   async fireToggleNotificaions() {

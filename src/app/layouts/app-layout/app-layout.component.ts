@@ -4,6 +4,7 @@ import { AuthenticationStore } from 'src/modules/authentication/authentication.s
 import { WebsocketConnection } from 'src/modules/common/WebsocketConnection';
 import {AnyNotification} from "../../../modules/notification/notification.model";
 import {NotificationService} from "../../../modules/notification/services/notification.service";
+import { NotificationQueries } from 'src/modules/notification/services/notification.queries';
 import { NotificationStore } from 'src/modules/notification/notification.store';
 
 @Component({
@@ -14,6 +15,7 @@ import { NotificationStore } from 'src/modules/notification/notification.store';
 export class AppLayoutComponent implements OnInit, OnDestroy {
   @Input()
   notification: Notification;
+
   @ViewChild("anchor")
   anchor: ElementRef<HTMLDivElement>;
 
@@ -27,14 +29,18 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
     private socket: WebsocketConnection,
     private authStore: AuthenticationStore,
     private notificationService: NotificationService,
+    private notificationQueries  : NotificationQueries,
     private notificationStore: NotificationStore
   )
   {
     this.notifications$ = this.notificationStore.get(s => s.notifications);
+    this.notification = this.notificationQueries.getNotifications();
 
   }
 
   ngOnInit(): void {
+    console.log(this.notifications$);
+
     this.sub = this.authStore.accessToken$.subscribe(accessToken => {
       if (accessToken) {
         this.socket.connect(accessToken);
