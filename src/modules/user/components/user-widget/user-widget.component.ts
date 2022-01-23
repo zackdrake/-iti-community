@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Observable } from 'rxjs';
@@ -10,9 +10,10 @@ import { NotificationStore } from 'src/modules/notification/notification.store';
 import { NotificationQueries } from 'src/modules/notification/services/notification.queries';
 import { NotificationSocketService } from 'src/modules/notification/services/notification.socket.service';
 import { NotificationService } from 'src/modules/notification/services/notification.service';
-import {AppNotification} from "src/modules/notification/notification.model";
 import {AnyNotification} from "../../../notification/notification.model";
-import {Post} from "../../../feed/post.model";
+
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+
 //import { AnyNotification } from 'src/modules/notification/notification.model';
 //import { NotificationState } from 'src/modules/notification/notification.state';
 
@@ -24,6 +25,9 @@ import {Post} from "../../../feed/post.model";
 export class UserWidgetComponent implements OnInit {
   @Input()
   notification: Notification;
+
+  @ViewChild("anchor")
+  anchor: ElementRef<HTMLDivElement>;
 
   @Output()
   toggleNotifications: EventEmitter<void> = new EventEmitter();
@@ -44,36 +48,35 @@ export class UserWidgetComponent implements OnInit {
     private notificationQueries: NotificationQueries,
     private socketService: NotificationSocketService,
     private notificationService: NotificationService
-    //private anyNotification: AnyNotification
-    //private notificationState: NotificationState
   ) {
     this.user$ = store.user$;
     this.photoUrl$ = store.get(s => s.user && s.user.photoUrl ? s.user.photoUrl : "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/434px-Unknown_person.jpg");
     this.hasUnread$ = notificationStore.hasUnread$;
+    this.notifications$ = this.notificationStore.get(s => s.notifications);
   }
 
   ngOnInit(): void {
   }
 
   async fireToggleNotificaions() {
+    const notificationsconst = await this.notificationQueries.getNotifications();
+
+    console.log(notificationsconst)
+    /* if (this.isHidden!){
+      this.notificationService.markAsViewed()
+    }
+     */
+
       this.isHidden = !this.isHidden;
-      
+
       this.toggleNotifications.emit();
 
-      if (this.isHidden){
-        this.socketService.onNewNotification( post => {
-          this.notificationStore.appendNotification(post);
-          console.log(post)
-        })
-      }else {
-        this.socketService.onNewNotification( post => {
-          this.notificationStore.prependNotification(post);
-          console.log(post)
-        })
 
-      }
+        this.socketService.onNewNotification( notif => {
+          this.notificationStore.appendNotification(notif);
+        })
+        await this.notificationService.fetch();
 
-      await this.notificationService.fetch();
   }
 
   logout() {
@@ -86,6 +89,21 @@ export class UserWidgetComponent implements OnInit {
         this.router.navigate(["/splash/register"]);
 
       }
+    });
+  }
+}
+
+export class NzDemoNotificationBasicComponent {
+  constructor(private notification: NzNotificationService) {}
+
+  createBasicNotification(): void {
+    this.notification
+      .blank(
+        'Notification Title',
+        'This is the content of the notification. This is the content of the notification. This is the content of the notification.'
+      )
+      .onClick.subscribe(() => {
+      console.log('notification clicked!');
     });
   }
 }

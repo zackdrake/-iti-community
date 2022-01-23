@@ -1,7 +1,10 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
+import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Observable, Subscription} from 'rxjs';
 import { AuthenticationStore } from 'src/modules/authentication/authentication.store';
 import { WebsocketConnection } from 'src/modules/common/WebsocketConnection';
+import {AnyNotification} from "../../../modules/notification/notification.model";
+import {NotificationService} from "../../../modules/notification/services/notification.service";
+import { NotificationStore } from 'src/modules/notification/notification.store';
 
 @Component({
   selector: 'app-app-layout',
@@ -9,10 +12,26 @@ import { WebsocketConnection } from 'src/modules/common/WebsocketConnection';
   styleUrls: ['./app-layout.component.less']
 })
 export class AppLayoutComponent implements OnInit, OnDestroy {
+  @Input()
+  notification: Notification;
+  @ViewChild("anchor")
+  anchor: ElementRef<HTMLDivElement>;
+
+
   sub?: Subscription;
 
+
   showDrawer: boolean = false;
-  constructor(private socket: WebsocketConnection, private authStore: AuthenticationStore) {
+  notifications$: Observable<AnyNotification[]>;
+  constructor(
+    private socket: WebsocketConnection,
+    private authStore: AuthenticationStore,
+    private notificationService: NotificationService,
+    private notificationStore: NotificationStore
+  )
+  {
+    this.notifications$ = this.notificationStore.get(s => s.notifications);
+
   }
 
   ngOnInit(): void {
@@ -22,6 +41,9 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
       } else {
         this.socket.disconnect();
       }
+
+
+
     });
   }
 
@@ -31,6 +53,12 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
     }
   }
   onToggleNotifications() {
+
+    if(this.showDrawer == true){
+      this.showDrawer = false;
+    }else{
+      this.showDrawer = true;
+    }
 
   }
 }

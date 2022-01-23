@@ -11,15 +11,6 @@
     </nz-badge>
     <button nz-button nzType="default" nzDanger nzGhost (click)="logout()"><i nz-icon nzType="logout"></i></button>
   </div>
-  <div [hidden] = isHidden>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <div class="w3-sidebar w3-bar-block w3-teal" style="width:40%">
-      <app-user-widget *ngFor="let notification of (notifications$ | async)" [notification]="notification"></app-user-widget>
-    </div>
-
-
-
-  </div>
 </div>
 
 <app-user-profile-modal #modal [user]="user$ | async"></app-user-profile-modal>
